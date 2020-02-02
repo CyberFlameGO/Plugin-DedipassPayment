@@ -111,7 +111,7 @@ class DediPassMethod extends PaymentMethod
     {
         return [
             'public-key' => ['required', 'string'],
-            'private-key' => ['required', 'string']
+            'private-key' => ['required', 'string'],
         ];
     }
 

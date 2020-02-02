@@ -26,6 +26,7 @@ class DedipassPaymentServiceProvider extends BasePluginServiceProvider
     {
         if (plugins()->isEnabled('shop')) {
             logger()->warning('Dedipass plugin need the shop plugin to work !');
+
             return;
         }
 
