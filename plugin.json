@@ -1,0 +1,12 @@
+{
+    "name": "DedipassPayment",
+    "description": "Dedipass payment for the Shop",
+    "version": "0.1.0",
+    "url": "https://azuriom.com",
+    "authors": [
+        "Azuriom"
+    ],
+    "providers": [
+        "\\Azuriom\\Plugin\\DedipassPayment\\Providers\\DedipassPaymentServiceProvider",
+    ]
+}

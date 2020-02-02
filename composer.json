@@ -1,0 +1,11 @@
+{
+    "name": "azuriom/dedipasspayment",
+    "type": "azuriom-plugin",
+    "description": "Dedipass payment for the Shop",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Azuriom\\Plugin\\DedipassPayment\\": "src/"
+        }
+    }
+}
