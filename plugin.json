@@ -1,6 +1,7 @@
 {
+    "id": "dedipasspayment",
     "name": "DedipassPayment",
-    "description": "Dedipass payment for the Shop",
+    "description": "Plugin to add Dedipass to the shop's payment methods.",
     "version": "0.1.0",
     "url": "https://azuriom.com",
     "authors": [
@@ -8,5 +9,6 @@
     ],
     "providers": [
         "\\Azuriom\\Plugin\\DedipassPayment\\Providers\\DedipassPaymentServiceProvider"
-    ]
+    ],
+    "apiId": 6
 }
