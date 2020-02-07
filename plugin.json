@@ -7,6 +7,6 @@
         "Azuriom"
     ],
     "providers": [
-        "\\Azuriom\\Plugin\\DedipassPayment\\Providers\\DedipassPaymentServiceProvider",
+        "\\Azuriom\\Plugin\\DedipassPayment\\Providers\\DedipassPaymentServiceProvider"
     ]
 }
