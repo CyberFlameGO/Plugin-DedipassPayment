@@ -2,8 +2,8 @@
     "id": "dedipasspayment",
     "name": "DedipassPayment",
     "description": "Plugin to add Dedipass to the shop's payment methods.",
-    "version": "0.1.0",
-    "url": "https://azuriom.com",
+    "version": "0.1.1",
+    "url": "https://azuriom.com/market/resources/6",
     "authors": [
         "Azuriom"
     ],

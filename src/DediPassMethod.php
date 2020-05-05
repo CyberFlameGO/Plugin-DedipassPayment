@@ -91,7 +91,7 @@ class DediPassMethod extends PaymentMethod
             'status' => 'DELIVERED',
             'items' => 'Money: '.$money,
             'payment_id' => $code,
-            'type' => 'offers',
+            'type' => 'OFFER',
         ]);
 
         return response()->json(['status' => 'success']);
