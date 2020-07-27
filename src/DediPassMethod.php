@@ -44,7 +44,7 @@ class DediPassMethod extends PaymentMethod
         }
 
         $code = $request->input('code');
-        $publicKey = $this->gateway->data['public-key'];
+        // $publicKey = $this->gateway->data['public-key'];
         $privateKey = $this->gateway->data['private-key'];
 
         if ($privateKey !== $request->input('privateKey')) {

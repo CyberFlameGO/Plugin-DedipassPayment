@@ -19,5 +19,26 @@
 </div>
 
 <div class="alert alert-info">
-    @lang('dedipasspayment::messages.setup', ['url' => '<code>'.route('shop.payments.notification', 'dedipass').'</code>'])
+    <p>
+        <i class="fas fa-info-circle"></i>
+        @lang('dedipasspayment::messages.setup', [
+            'url' => '<code>'.route('shop.payments.notification', 'dedipass').'</code>',
+            'money' => money_name(1),
+        ])
+    </p>
+
+    <a class="btn btn-primary mb-3" data-toggle="collapse" href="#keysCollapse" role="button" aria-expanded="false" aria-controls="keysCollapse">
+        <i class="fas fa-key"></i> {{ trans('dedipasspayment::messages.keys') }}
+    </a>
+
+    <div class="collapse" id="keysCollapse">
+        <img src="https://azuriom.com/assets/img/docs/dedipass.png" alt="Dedipass" class="img-fluid rounded">
+    </div>
 </div>
+
+@if(! use_site_money())
+    <div class="alert alert-danger" role="alert">
+        <i class="fas fa-exclamation-triangle"></i>
+        @lang('dedipasspayment::messages.site_money', ['url' => route('shop.admin.settings')])
+    </div>
+@endif
