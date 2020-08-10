@@ -5,6 +5,7 @@ namespace Azuriom\Plugin\DedipassPayment;
 use Azuriom\Models\User;
 use Azuriom\Plugin\Shop\Cart\Cart;
 use Azuriom\Plugin\Shop\Models\Payment;
+use Azuriom\Plugin\Shop\Models\PaymentItem;
 use Azuriom\Plugin\Shop\Payment\PaymentMethod;
 use Illuminate\Http\Request;
 
@@ -53,7 +54,11 @@ class DediPassMethod extends PaymentMethod
             return response()->json(['status' => 'error', 'message' => 'Invalid private key']);
         }
 
-        if (Payment::where('payment_id', $code)->where('created_at', '>', now()->subMinute())->exists()) {
+        $useLegacyShop = ! class_exists(PaymentItem::class);
+
+        if (Payment::where($useLegacyShop ? 'payment_id' : 'transaction_id', $code)
+            ->where('created_at', '>', now()->subMinute())
+            ->exists()) {
             //logger()->warning('[Shop] Dedipass - Payment already completed: '.$code);
 
             return response()->json(['status' => 'success', 'message' => 'Payment already completed']);
@@ -83,15 +88,29 @@ class DediPassMethod extends PaymentMethod
         $user->addMoney($money);
         $user->save();
 
-        Payment::forceCreate([
+        // TODO remove shop 0.1.x compatibility
+        if ($useLegacyShop) {
+            Payment::forceCreate([
+                'user_id' => $user->id,
+                'price' => $price,
+                'currency' => 'EUR',
+                'payment_type' => $this->id,
+                'status' => 'DELIVERED',
+                'items' => 'Money: '.$money,
+                'payment_id' => $code,
+                'type' => 'OFFER',
+            ]);
+
+            return response()->json(['status' => 'success']);
+        }
+
+        Payment::create([
             'user_id' => $user->id,
             'price' => $price,
             'currency' => 'EUR',
-            'payment_type' => $this->id,
-            'status' => 'DELIVERED',
-            'items' => 'Money: '.$money,
-            'payment_id' => $code,
-            'type' => 'OFFER',
+            'gateway_type' => $this->id,
+            'status' => 'completed',
+            'transaction_id' => $code,
         ]);
 
         return response()->json(['status' => 'success']);
